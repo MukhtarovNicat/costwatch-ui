@@ -1,16 +1,32 @@
-# React + Vite
+# CostWatch - Frontend Client 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+CostWatch, e-ticarət platformalarındakı (Trendyol, Amazon və s.) məhsulların qiymət dəyişikliklərini real vaxt rejimində izləyən və hədəf qiymətə düşdükdə istifadəçiyə bildiriş göndərən bir Micro-SaaS platformasıdır. Bu qovluq layihənin frontend (Client) hissəsini ehtiva edir.
 
-Currently, two official plugins are available:
+## 🛠️ İstifadə Olunan Texnologiyalar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* **Framework:** React (Vite ilə quraşdırılıb)
+* **CSS Framework:** Tailwind CSS v4 (Müasir, konfiqurasiyasız mühərrik)
+* **Routing:** React Router Dom v6+
+* **İkonlar:** Lucide React
+* **HTTP Client:** Axios (Backend API sorğuları üçün)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📂 Qovluq Strukturu (Folder Structure)
 
-## Expanding the Oxlint configuration
+Layihə scalable və modulyar arxitektura prinsiplərinə uyğun olaraq aşağıdakı strukturda qurulmuşdur:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```text
+src/
+├── assets/          # Loqolar, qlobal şəkillər və statik fayllar
+├── components/      # Təkrar istifadə edilə bilən komponentlər
+│   ├── common/      # Qlobal ortaq komponentlər (Button, Input və s.)
+│   ├── home/        # Sırf Landing (Tanıtım) səhifəsinə aid komponentlər
+│   └── dashboard/   # Sırf daxili panelə aid komponentlər
+├── context/         # Qlobal State idarəetməsi (Məs: AuthContext)
+├── hooks/           # Custom React Hook-ları
+├── layouts/         # Səhifə skeletləri (Məs: DashboardLayout)
+├── pages/           # Əsas böyük səhifələr (Home, Login, Dashboard)
+├── services/        # Backend .NET API ilə əlaqə quran servis funksiyaları
+├── App.jsx          # Router xəritəsi və ana giriş nöqtəsi
+└── main.jsx         # Layihənin ayağa qaldırıldığı yer
