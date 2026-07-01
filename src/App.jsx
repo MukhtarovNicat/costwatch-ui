@@ -1,11 +1,15 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './index.css'
+import Home from './pages/Home'
 
 function App() {
 
   return (
-    <>
-      <h1>CostWatch MainPage</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
