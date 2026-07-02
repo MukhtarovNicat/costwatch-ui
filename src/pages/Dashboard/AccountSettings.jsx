@@ -10,12 +10,10 @@ const AccountSettings = () => {
   return (
     <div className="max-w-3xl space-y-6 animate-fade-in">
       
-      {/* BAŞLIQ */}
       <div>
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Account Settings</h1>
       </div>
 
-      {/* 1. PROFILE CARD (Google məlumatları birbaşa daxilindədir) */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
@@ -23,7 +21,6 @@ const AccountSettings = () => {
             <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200 shrink-0 text-xl font-bold text-slate-700">
               S
             </div>
-            {/* Profil Məlumatları */}
             <div>
               <h3 className="text-lg font-bold text-slate-900">Sarah From</h3>
               <div className="flex items-center gap-2 mt-1 bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-lg w-fit">
@@ -39,7 +36,6 @@ const AccountSettings = () => {
         </div>
       </div>
 
-      {/* 2. EMAIL NOTIFICATIONS CARD (Təmizlənmiş və modern) */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
           <Bell className="w-4 h-4 text-[#18888A]" />
@@ -47,13 +43,11 @@ const AccountSettings = () => {
         </div>
 
         <div className="divide-y divide-slate-100">
-          {/* Option 1: Price Drop Alert */}
           <div className="flex items-center justify-between py-3.5">
             <div>
               <span className="block text-sm font-semibold text-slate-800">Price Drop Alerts</span>
               <span className="block text-xs text-slate-400 mt-0.5">Get instant emails when watched items hit your target price.</span>
             </div>
-            {/* Təmiz Toggle Switch */}
             <label className="relative inline-flex items-center cursor-pointer select-none">
               <input 
                 type="checkbox" 
@@ -65,7 +59,6 @@ const AccountSettings = () => {
             </label>
           </div>
 
-          {/* Option 2: Weekly Summary */}
           <div className="flex items-center justify-between py-3.5">
             <div>
               <span className="block text-sm font-semibold text-slate-800">Weekly Performance Report</span>
@@ -84,7 +77,6 @@ const AccountSettings = () => {
         </div>
       </div>
 
-      {/* 3. DANGER ZONE */}
       <div className="bg-white rounded-2xl border border-rose-100 shadow-xs p-6 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-rose-50/50 text-rose-700">
           <ShieldAlert className="w-4 h-4" />
