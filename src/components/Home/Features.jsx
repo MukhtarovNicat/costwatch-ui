@@ -3,7 +3,7 @@ import { MonitorCloud, Siren, MonitorSpeaker, FileChartColumn } from 'lucide-rea
 
 const Features = () => {
   return (
-    <div className="text-center py-16 max-w-7xl mx-auto px-6">
+    <div id="features" className="text-center py-16 max-w-7xl mx-auto px-6">
         {/* Başlıq dizaynı */}
         <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 mb-2">FEATURES</h2>
         <p className="text-slate-500 max-w-xl mx-auto mb-12 text-sm">Everything you need to smart-track your retail pricing and save more money.</p>

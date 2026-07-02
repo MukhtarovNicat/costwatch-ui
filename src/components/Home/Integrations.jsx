@@ -9,7 +9,7 @@ import Walmart from '../../assets/companyLogos/walmart.png'
 
 const Integrations = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-16 bg-[#F0F1F3] px-6">
+    <div id="integrations" className="flex flex-col items-center justify-center gap-4 py-16 bg-[#F0F1F3] px-6">
         <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 mb-1">INTEGRATIONS</h2>
         <span className="text-md text-slate-500 mb-6">Supported retailers</span>
         

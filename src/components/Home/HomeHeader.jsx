@@ -22,10 +22,10 @@ const HomeHeader = () => {
               <a href="#features">Features</a>
             </li>
             <li className='text-[16px] lg:text-[18px] font-bold hover:text-[#18888A] transition-colors duration-300'>
-              <a href="#pricing">Pricing</a>
+              <a href="#integrations">Integrations</a>
             </li>
             <li className='text-[16px] lg:text-[18px] font-bold hover:text-[#18888A] transition-colors duration-300'>
-              <a href="#integrations">Integrations</a>
+              <a href="#pricing">Pricing</a>
             </li>
             <li className='text-[16px] lg:text-[18px] font-bold hover:text-[#18888A] transition-colors duration-300'>
               <a href="#faq">FAQ</a>

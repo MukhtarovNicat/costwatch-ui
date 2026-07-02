@@ -28,7 +28,7 @@ const faq = () => {
   };
 
   return (
-    <div className="w-full bg-slate-50/30 py-16 px-6">
+    <div id="faq" className="w-full bg-slate-50/30 py-16 px-6">
       <div className="max-w-3xl mx-auto">
         
         <div className="text-center mb-12">

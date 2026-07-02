@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom'
 
 const Pricing = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 py-16 px-6 bg-slate-50/50">
+    <div id="pricing" className="flex flex-col items-center justify-center gap-4 py-16 px-6 bg-slate-50/50">
         <h2 className="text-3xl font-extrabold tracking-tight text-slate-900 mb-1">PRICING</h2>
         <p className="text-slate-500 text-sm mb-8 text-center">Choose the perfect retail tracking pack that fits your budget.</p>
         
