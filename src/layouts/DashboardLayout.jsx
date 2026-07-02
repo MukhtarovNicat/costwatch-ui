@@ -23,9 +23,11 @@ const DashboardLayout = () => {
       >
         <div>
           <div className="h-20 flex items-center justify-between px-5 border-b border-slate-100 relative">
-            <span className={`text-[#18888A] font-extrabold tracking-tight transition-all duration-200 ${isCollapsed ? 'text-xl mx-auto' : 'text-2xl'}`}>
+            <NavLink to="/dashboard">
+              <span className={`text-[#18888A] font-extrabold tracking-tight transition-all duration-200 ${isCollapsed ? 'text-xl mx-auto' : 'text-2xl'}`}>
               {isCollapsed ? 'CW' : 'CostWatch'}
             </span>
+            </NavLink>
             
             <button 
               onClick={() => setIsSidebarOpen(false)}
@@ -111,7 +113,9 @@ const DashboardLayout = () => {
           
           <div className="flex items-center gap-3 cursor-pointer p-1.5 hover:bg-slate-50 rounded-full transition-colors">
             <div className="w-9 h-9 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200">
-              <User className="w-5 h-5 text-slate-600" />
+              <NavLink to='/dashboard/settings'>
+                  <User className="w-5 h-5 text-slate-600" />
+              </NavLink> 
             </div>
             <span className="text-sm font-semibold text-slate-700 pr-2 hidden sm:inline">Sarah</span>
           </div>
