@@ -1,6 +1,7 @@
 import React from 'react'
 import HomeHeader from '../components/Home/HomeHeader'
 import HomeMain from '../components/Home/HomeMain'
+import MainBottom from '../components/Home/MainBottom'
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
         <div className="main">
             <HomeHeader/>
             <HomeMain/>
+            <MainBottom/>
         </div>
     </>
   )
