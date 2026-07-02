@@ -3,6 +3,7 @@ import HomeHeader from '../components/Home/HomeHeader'
 import HomeMain from '../components/Home/HomeMain'
 import MainBottom from '../components/Home/MainBottom'
 import Features from '../components/Home/Features'
+import Integrations from '../components/Home/Integrations'
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
             <HomeMain/>
             <MainBottom/>
             <Features/>
+            <Integrations/>
         </div>
     </>
   )
