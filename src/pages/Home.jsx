@@ -4,6 +4,7 @@ import HomeMain from '../components/Home/HomeMain'
 import MainBottom from '../components/Home/MainBottom'
 import Features from '../components/Home/Features'
 import Integrations from '../components/Home/Integrations'
+import Pricing from '../components/Home/Pricing'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
             <MainBottom/>
             <Features/>
             <Integrations/>
+            <Pricing/>
         </div>
     </>
   )
