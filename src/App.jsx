@@ -5,8 +5,8 @@ import DashboardLayout from './layouts/DashboardLayout'
 import DashboardHome from './pages/Dashboard/DashboardHome'
 import MyWatches from './pages/Dashboard/MyWatches'
 import AlertsHistory from './pages/Dashboard/AlertHistory'
+import AccountSettings from './pages/Dashboard/AccountSettings'
 
-const AccountSettings = () => <div className="text-xl font-bold">Account Settings Səhifəsi</div>
 
 function App() {
   return (
