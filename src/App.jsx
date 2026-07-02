@@ -4,8 +4,8 @@ import Login from './pages/Login'
 import DashboardLayout from './layouts/DashboardLayout'
 import DashboardHome from './pages/Dashboard/DashboardHome'
 import MyWatches from './pages/Dashboard/MyWatches'
+import AlertsHistory from './pages/Dashboard/AlertHistory'
 
-const AlertsHistory = () => <div className="text-xl font-bold">Alerts History Səhifəsi</div>
 const AccountSettings = () => <div className="text-xl font-bold">Account Settings Səhifəsi</div>
 
 function App() {
