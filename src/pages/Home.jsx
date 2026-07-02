@@ -5,6 +5,7 @@ import MainBottom from '../components/Home/MainBottom'
 import Features from '../components/Home/Features'
 import Integrations from '../components/Home/Integrations'
 import Pricing from '../components/Home/Pricing'
+import Faq from '../components/Home/Faq'
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
             <Features/>
             <Integrations/>
             <Pricing/>
+            <Faq/>
         </div>
     </>
   )
