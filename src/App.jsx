@@ -6,6 +6,7 @@ import DashboardHome from './pages/Dashboard/DashboardHome'
 import MyWatches from './pages/Dashboard/MyWatches'
 import AlertsHistory from './pages/Dashboard/AlertHistory'
 import AccountSettings from './pages/Dashboard/AccountSettings'
+import ProtectedRoute from './components/Auth/ProtectedRoute'
 
 
 function App() {
@@ -15,11 +16,13 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
 
+        <Route element={<ProtectedRoute />}>
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route path="" element={<DashboardHome />} />
           <Route path="my-watches" element={<MyWatches />} />
           <Route path="alerts" element={<AlertsHistory />} />
           <Route path="settings" element={<AccountSettings />} />
+        </Route>
         </Route>
       </Routes>
     </BrowserRouter>
