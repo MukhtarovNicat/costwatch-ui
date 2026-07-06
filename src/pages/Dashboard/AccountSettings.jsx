@@ -1,24 +1,64 @@
-import React, { useState } from 'react'
-import { User, Bell, ShieldAlert, X, Camera, AlertTriangle } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Bell, ShieldAlert, X, Camera, AlertTriangle } from 'lucide-react'
 import googleIcon from '../../assets/google.png'
 
 const AccountSettings = () => {
+  const navigate = useNavigate();
+
+  // State-lər
   const [priceDropAlert, setPriceDropAlert] = useState(true);
   const [weeklySummary, setWeeklySummary] = useState(false);
-  const [fullName, setFullName] = useState('Sarah From');
-  const [username, setUsername] = useState('sarah_track');
+  
+  const [fullName, setFullName] = useState('İstifadəçi');
+  const [username, setUsername] = useState('user');
+  const [email, setEmail] = useState('email@gmail.com');
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false); 
 
+  useEffect(() => {
+    const savedName = localStorage.getItem('username');
+    const savedEmail = localStorage.getItem('email');
+
+    if (savedName) {
+      setFullName(savedName);
+      setUsername(savedName.toLowerCase().replace(/\s+/g, '_'));
+    }
+    if (savedEmail) {
+      setEmail(savedEmail);
+    }
+  }, []);
+
   const handleSaveChanges = (e) => {
     e.preventDefault();
+    localStorage.setItem('username', fullName);
     setIsEditModalOpen(false);
   };
 
-  const handleDeleteAccountConfirm = () => {
-    console.log("Account deleted permanently.");
-    setIsDeleteModalOpen(false);
+  const handleDeleteAccountConfirm = async () => {
+    console.log("Account deletion triggered.");
+    
+    try {
+      const token = localStorage.getItem('token');
+      
+      const response = await fetch('https://localhost:7003/api/users/delete-account', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      localStorage.clear(); 
+      console.log("Account deleted permanently and session cleared.");
+      
+      setIsDeleteModalOpen(false);
+      navigate('/login'); 
+    } catch (error) {
+      console.error("Error during account deletion:", error);
+      localStorage.clear();
+      navigate('/login');
+    }
   };
 
   return (
@@ -28,18 +68,19 @@ const AccountSettings = () => {
         <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Account Settings</h1>
       </div>
 
+      {/* PROFİL KART-I (Dinamik data ilə) */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200 shrink-0 text-xl font-bold text-slate-700">
-              {fullName.charAt(0)}
+            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200 shrink-0 text-xl font-bold text-slate-700 select-none">
+              {fullName.charAt(0).toUpperCase()}
             </div>
             <div>
               <h3 className="text-lg font-bold text-slate-900">{fullName}</h3>
               <p className="text-xs text-slate-400 font-medium -mt-0.5">@{username}</p>
               <div className="flex items-center gap-2 mt-2 bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-lg w-fit">
                 <img src={googleIcon} alt="Google" className="w-3.5 h-3.5 object-contain" />
-                <span className="text-xs text-slate-600 font-medium">imian1@gmail.com</span>
+                <span className="text-xs text-slate-600 font-medium">{email}</span>
               </div>
             </div>
           </div>
@@ -53,6 +94,7 @@ const AccountSettings = () => {
         </div>
       </div>
 
+      {/* BİLDİRİŞ AYARLARI */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-6 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-slate-100">
           <Bell className="w-4 h-4 text-[#18888A]" />
@@ -84,6 +126,7 @@ const AccountSettings = () => {
         </div>
       </div>
 
+      {/* DANGER ZONE */}
       <div className="bg-white rounded-2xl border border-rose-100 shadow-xs p-6 space-y-4">
         <div className="flex items-center gap-2 pb-2 border-b border-rose-50/50 text-rose-700">
           <ShieldAlert className="w-4 h-4" />
@@ -103,6 +146,7 @@ const AccountSettings = () => {
         </div>
       </div>
 
+      {/* EDIT MODAL */}
       {isEditModalOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-fade-in">
           <div className="bg-white rounded-2xl w-full max-w-md shadow-xl border border-slate-100 p-6 relative">
@@ -111,7 +155,7 @@ const AccountSettings = () => {
             <form onSubmit={handleSaveChanges} className="space-y-4">
               <div className="flex flex-col items-center justify-center py-2 mb-2">
                 <div className="relative group">
-                  <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center text-2xl font-bold text-slate-700 border-2 border-slate-200">{fullName.charAt(0)}</div>
+                  <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center text-2xl font-bold text-slate-700 border-2 border-slate-200 select-none">{fullName.charAt(0).toUpperCase()}</div>
                   <div className="absolute inset-0 bg-slate-900/30 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"><Camera className="w-5 h-5 text-white" /></div>
                 </div>
               </div>
@@ -135,24 +179,21 @@ const AccountSettings = () => {
         </div>
       )}
 
+      {/* DELETE MODAL */}
       {isDeleteModalOpen && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center z-50 p-4 animate-fade-in">
           <div className="bg-white rounded-2xl w-full max-w-sm shadow-2xl border border-rose-50 p-6 relative">
-            
             <div className="flex flex-col items-center text-center">
-              
               <div className="w-12 h-12 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mb-4 border border-rose-100">
                 <AlertTriangle className="w-6 h-6" />
               </div>
 
               <h3 className="text-lg font-bold text-slate-900 tracking-tight">Are you absolutely sure?</h3>
-              
               <p className="text-xs text-slate-500 mt-2 leading-relaxed px-2">
                 This action <span className="font-bold text-rose-600">cannot be undone</span>. All your active price watches and alert histories will be wiped out from our database permanently.
               </p>
 
               <div className="grid grid-cols-2 gap-3 w-full mt-6 pt-4 border-t border-slate-150/60">
-                
                 <button 
                   type="button"
                   onClick={() => setIsDeleteModalOpen(false)}
@@ -160,7 +201,6 @@ const AccountSettings = () => {
                 >
                   No, Keep It
                 </button>
-
                 <button 
                   type="button"
                   onClick={handleDeleteAccountConfirm}
@@ -168,11 +208,8 @@ const AccountSettings = () => {
                 >
                   Yes, Delete Account
                 </button>
-
               </div>
-
             </div>
-
           </div>
         </div>
       )}
@@ -181,4 +218,4 @@ const AccountSettings = () => {
   )
 }
 
-export default AccountSettings
+export default AccountSettings;
