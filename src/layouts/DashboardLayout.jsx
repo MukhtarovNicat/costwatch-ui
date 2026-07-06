@@ -1,10 +1,28 @@
-import React, { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { LayoutDashboard, Eye, Bell, Settings, LogOut, User, Menu, X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [username, setUsername] = useState('İstifadəçi');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+      setUsername(savedUsername);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('email');
+    
+    console.log('Sessiya təmizləndi, istifadəçi çıxış etdi.');
+    navigate('/login'); 
+  };
 
   return (
     <div className="w-full h-screen flex bg-slate-50 overflow-hidden relative">
@@ -25,8 +43,8 @@ const DashboardLayout = () => {
           <div className="h-20 flex items-center justify-between px-5 border-b border-slate-100 relative">
             <NavLink to="/dashboard">
               <span className={`text-[#18888A] font-extrabold tracking-tight transition-all duration-200 ${isCollapsed ? 'text-xl mx-auto' : 'text-2xl'}`}>
-              {isCollapsed ? 'CW' : 'CostWatch'}
-            </span>
+                {isCollapsed ? 'CW' : 'CostWatch'}
+              </span>
             </NavLink>
             
             <button 
@@ -45,7 +63,6 @@ const DashboardLayout = () => {
           </div>
 
           <nav className="p-3 space-y-1">
-            
             <NavLink 
               to="/dashboard" 
               end
@@ -90,7 +107,11 @@ const DashboardLayout = () => {
         </div>
 
         <div className="p-3 border-t border-slate-100">
-          <button className={`w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-xl text-sm font-semibold transition-all cursor-pointer ${isCollapsed ? 'justify-center px-0' : ''}`} title={isCollapsed ? "Logout" : ""}>
+          <button 
+            onClick={handleLogout}
+            className={`w-full flex items-center gap-3 px-4 py-3 text-slate-600 hover:text-rose-600 hover:bg-rose-50 rounded-xl text-sm font-semibold transition-all cursor-pointer ${isCollapsed ? 'justify-center px-0' : ''}`} 
+            title={isCollapsed ? "Logout" : ""}
+          >
             <LogOut className="w-5 h-5 shrink-0" />
             <span className={`${isCollapsed ? 'hidden' : 'block'}`}>Logout</span>
           </button>
@@ -100,7 +121,6 @@ const DashboardLayout = () => {
       <div className="flex-1 h-full flex flex-col overflow-hidden">
         
         <header className="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-4 md:px-8 shrink-0">
-          
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsSidebarOpen(true)}
@@ -114,10 +134,12 @@ const DashboardLayout = () => {
           <div className="flex items-center gap-3 cursor-pointer p-1.5 hover:bg-slate-50 rounded-full transition-colors">
             <div className="w-9 h-9 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200">
               <NavLink to='/dashboard/settings'>
-                  <User className="w-5 h-5 text-slate-600" />
+                <User className="w-5 h-5 text-slate-600" />
               </NavLink> 
             </div>
-            <span className="text-sm font-semibold text-slate-700 pr-2 hidden sm:inline">Sarah</span>
+            <span className="text-sm font-semibold text-slate-700 pr-2 hidden sm:inline">
+              {username}
+            </span>
           </div>
         </header>
 
